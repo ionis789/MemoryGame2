@@ -15,6 +15,7 @@ class ViewController: UIViewController {
 
     var cardCountPicker = CardCountPickerView()
     var game = MemoryGame(cardPairsCount: 8)
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +56,14 @@ class ViewController: UIViewController {
             if !pickedCard.model.isMatched {
                 game.flipCard(for: pickedCard)
             }
+            
             print("Card id: \(pickedCard.model.id)")
+        }
+        if MemoryGame.pickedCardPairs == 0 {
+            let alertController = UIAlertController(title: "Game end", message: "You successfully end the game", preferredStyle: .alert)
+            let gameEndAlert = UIAlertAction(title: "OK", style: .default)
+            alertController.addAction(gameEndAlert)
+            self.present(alertController, animated: true, completion: nil)
         }
 
 
