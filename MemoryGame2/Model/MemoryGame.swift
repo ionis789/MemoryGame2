@@ -38,11 +38,13 @@ class MemoryGame {
                     print("Game end")
                 }
             } else {
-                lastPickedCard?.card.setTitle("", for: .normal)
-                resetCard(for: pickedCard)
-                resetCard(for: lastPickedCard!)
-                lastPickedCard = nil
-                print("Cards dont match")
+                pickedCard.card.setTitle(pickedCard.model.emoji, for: .normal)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    self.resetCard(for: pickedCard)
+                    self.resetCard(for: self.lastPickedCard!)
+                    self.lastPickedCard = nil
+                    print("Cards didn't match")
+                }
             }
         }
 
